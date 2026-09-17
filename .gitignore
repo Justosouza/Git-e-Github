@@ -1,0 +1,22 @@
+# Dependências Node
+node_modules/
+frontend/node_modules/
+
+# Banco SQLite local
+database/*.sqlite
+database/*.sqlite-journal
+
+# Arquivos de ambiente
+.env
+.env.*
+
+# Logs
+*.log
+npm-debug.log*
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Build do frontend
+frontend/dist/

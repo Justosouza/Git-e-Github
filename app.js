@@ -1,18 +1,30 @@
-const http = require('http');
+const express = require("express");
+const cors = require("cors");
+const sequelize = require("./database/database");
 
-const server = http.createServer((req, res) => {
+const produtoroutes = require("./routes/produtoroutes");
+const fornecedorroutes = require("./routes/fornecedorroutes");
+const produtoFornecedorroutes = require("./routes/produtoFornecedorroutes");
 
-    res.writeHead(200, {'Content-Type': 'text/plain'});
+require("./models");
 
-    res.end('Olá, Mundo!');
+const app = express();
 
-});
+app.use(cors());
+app.use(express.json());
 
+app.use(produtoroutes);
+app.use(fornecedorroutes);
+app.use(produtoFornecedorroutes);
 
-const PORT = 3000;
+sequelize.sync()
+    .then(() => {
+        console.log("Banco de dados conectado!");
 
-server.listen(PORT, () => {
-
-    console.log(`Servidor rodando em http://localhost:${PORT}/`);
-
-});
+        app.listen(3000, () => {
+            console.log("Servidor rodando em http://localhost:3000");
+        });
+    })
+    .catch((error) => {
+        console.error("Erro ao conectar ao banco:", error);
+    });
