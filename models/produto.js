@@ -25,9 +25,19 @@ const Produto = sequelize.define("Produto", {
     codigoBarras: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+
+    quantidade: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0
+    },
+
+    estoqueMinimo: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0
     }
 });
-
-module.exports = Produto;
 
 module.exports = Produto;
